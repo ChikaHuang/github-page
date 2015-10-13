@@ -16,7 +16,9 @@ controller('ListController', function($scope) {
         todo.destroy({
           success: function(result) {
             console.log("destroy success:" + JSON.stringify(result));
-            $scope.todoList.splice(index, 1);
+            $scope.$evalAsync(function() {
+              $scope.todoList.splice(index, 1);
+            });
           },
           error: function(object, error) {
             console.log("destroy fail");
